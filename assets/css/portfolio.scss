@@ -233,6 +233,42 @@
 
     .nav-cta:hover { filter: brightness(1.08); transform: translateY(-1px); }
 
+    .nav-links-cta { display: none; }
+
+    .nav-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      margin-left: 4px;
+      padding: 0;
+      border: 1px solid rgba(255, 122, 45, 0.25);
+      background: rgba(0, 0, 0, 0.35);
+      cursor: pointer;
+      place-items: center;
+      gap: 5px;
+      flex-direction: column;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: var(--amber-soft);
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    body.nav-open .nav-toggle span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    body.nav-open .nav-toggle span:nth-child(2) {
+      opacity: 0;
+    }
+
+    body.nav-open .nav-toggle span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
     /* —— Shared section chrome —— */
     .section-label {
       font-family: "Share Tech Mono", monospace;
@@ -1036,7 +1072,53 @@
       .hero-portrait img {
         max-height: 340px;
       }
-      .nav-cta { display: none; }
-      .nav-links a { padding: 8px 10px; font-size: 0.82rem; }
+      .wrap { padding: 0 20px 56px; }
+      nav { padding: 0 20px; }
+
+      .nav-toggle { display: grid; }
+      .nav-cta-bar { display: none; }
+      .nav-links-cta { display: list-item; }
+      .nav-cta-in-menu {
+        display: flex;
+        width: 100%;
+        margin: 12px 0 0;
+        height: 42px;
+        justify-content: center;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: var(--nav-h);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px 20px 20px;
+        background: rgba(7, 6, 10, 0.96);
+        border-bottom: 1px solid rgba(255, 122, 45, 0.15);
+        backdrop-filter: blur(16px);
+      }
+
+      body.nav-open .nav-links {
+        display: flex;
+      }
+
+      .nav-links li { width: 100%; }
+
+      .nav-links a:not(.nav-cta) {
+        display: block;
+        padding: 14px 12px;
+        font-size: 0.95rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .stats { grid-template-columns: 1fr 1fr; }
+      .cta-row { flex-direction: column; align-items: stretch; }
+      .cta-row .btn { width: 100%; justify-content: center; }
+      .hero h1 { font-size: clamp(2rem, 10vw, 2.6rem); }
     }
 

@@ -1,6 +1,38 @@
+// Mobile nav toggle
+(function () {
+  var toggle = document.getElementById('nav-toggle');
+  var links = document.getElementById('nav-links');
+  if (!toggle || !links) return;
+
+  function closeMenu() {
+    document.body.classList.remove('nav-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open menu');
+  }
+
+  function openMenu() {
+    document.body.classList.add('nav-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Close menu');
+  }
+
+  toggle.addEventListener('click', function () {
+    if (document.body.classList.contains('nav-open')) closeMenu();
+    else openMenu();
+  });
+
+  links.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', closeMenu);
+  });
+
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 900) closeMenu();
+  });
+})();
+
 // Highlight nav link for the section currently in view
 (function () {
-  const links = Array.from(document.querySelectorAll('.nav-links a'));
+  const links = Array.from(document.querySelectorAll('.nav-links a:not(.nav-cta)'));
   const map = links
     .map(function (a) {
       const href = a.getAttribute('href') || '';

@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %} — Engineering the Future</title>
   {% if page.description %}<meta name="description" content="{{ page.description }}" />{% elsif site.description %}<meta name="description" content="{{ site.description }}" />{% endif %}
-  <link rel="icon" type="image/png" href="{{ '/images/favicon-32x32.svg' | relative_url }}">
+  <meta name="theme-color" content="#07060a" />
+  <link rel="icon" type="image/svg+xml" href="{{ '/images/favicon-32x32.svg' | relative_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -14,12 +15,12 @@
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}/"/>
   {% if site.data.profile.portrait %}<meta property="og:image" content="{{ site.data.profile.portrait | absolute_url }}"/>{% endif %}
-  {% if site.description %}<meta property="og:description" content="{{ site.description }}"/>{% endif %}
-  <meta name="twitter:card" content="summary"/>
+  {% if page.description %}<meta property="og:description" content="{{ page.description }}"/>{% elsif site.description %}<meta property="og:description" content="{{ site.description }}"/>{% endif %}
+  <meta name="twitter:card" content="summary_large_image"/>
+  {% if site.data.seo.meta_twitter_site %}<meta name="twitter:site" content="{{ site.data.seo.meta_twitter_site }}"/>{% endif %}
 </head>
 <body class="page page-portfolio">
   {% assign profile = site.data.profile %}
-  {% assign portfolio = site.data.portfolio %}
 
   <div class="bg-layer" aria-hidden="true">
     <div class="bg-haze amber"></div>
@@ -32,7 +33,7 @@
   </div>
 
   <div class="nav-shell">
-    <nav>
+    <nav aria-label="Primary">
       <a class="logo" href="{{ '/' | relative_url }}#home">
         <div class="logo-mark"><span>N</span></div>
         <div class="logo-text">
@@ -41,13 +42,17 @@
         </div>
       </a>
       <div class="nav-right">
-        <ul class="nav-links">
+        <ul class="nav-links" id="nav-links">
           {% assign mainmenu = site.data.menus.main | sort: 'weight' %}
           {% for item in mainmenu %}
           <li><a href="{{ item.url | relative_url }}">{{ item.name }}</a></li>
           {% endfor %}
+          <li class="nav-links-cta"><a class="nav-cta nav-cta-in-menu" href="{{ '/#contact' | relative_url }}">Hire Me</a></li>
         </ul>
-        <a class="nav-cta" href="{{ '/#contact' | relative_url }}">Hire Me</a>
+        <a class="nav-cta nav-cta-bar" href="{{ '/#contact' | relative_url }}">Hire Me</a>
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </nav>
   </div>
@@ -61,7 +66,7 @@
         {% assign footermenu = site.data.menus.footer | sort: 'weight' %}
         {% for item in footermenu %}
           {% if item.url contains 'http' %}
-          <a href="{{ item.url }}" {% if item.url contains 'http' %}target="_blank" rel="noopener"{% endif %}>{{ item.name }}</a>
+          <a href="{{ item.url }}" target="_blank" rel="noopener">{{ item.name }}</a>
           {% else %}
           <a href="{{ item.url | relative_url }}">{{ item.name }}</a>
           {% endif %}
