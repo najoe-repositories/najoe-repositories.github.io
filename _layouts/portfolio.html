@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %} — Engineering the Future</title>
+  {% if page.description %}<meta name="description" content="{{ page.description }}" />{% elsif site.description %}<meta name="description" content="{{ site.description }}" />{% endif %}
+  <link rel="icon" type="image/png" href="{{ '/images/favicon-32x32.svg' | relative_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="{{ '/assets/css/portfolio.css' | relative_url }}" rel="stylesheet">
+  <meta property="og:title" content="{% if page.meta_title %}{{ page.meta_title }}{% else %}{{ site.title }} — Engineering the Future{% endif %}"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}/"/>
+  {% if site.data.profile.portrait %}<meta property="og:image" content="{{ site.data.profile.portrait | absolute_url }}"/>{% endif %}
+  {% if site.description %}<meta property="og:description" content="{{ site.description }}"/>{% endif %}
+  <meta name="twitter:card" content="summary"/>
+</head>
+<body class="page page-portfolio">
+  {% assign profile = site.data.profile %}
+  {% assign portfolio = site.data.portfolio %}
+
+  <div class="bg-layer" aria-hidden="true">
+    <div class="bg-haze amber"></div>
+    <div class="bg-haze blue"></div>
+    <div class="bg-haze pink"></div>
+    <div class="bg-grid"></div>
+    <div class="rain"></div>
+    <div class="bg-scanlines"></div>
+    <div class="vignette"></div>
+  </div>
+
+  <div class="nav-shell">
+    <nav>
+      <a class="logo" href="{{ '/' | relative_url }}#home">
+        <div class="logo-mark"><span>N</span></div>
+        <div class="logo-text">
+          {{ profile.handle | default: site.title }}
+          <small>// eng.ops</small>
+        </div>
+      </a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          {% assign mainmenu = site.data.menus.main | sort: 'weight' %}
+          {% for item in mainmenu %}
+          <li><a href="{{ item.url | relative_url }}">{{ item.name }}</a></li>
+          {% endfor %}
+        </ul>
+        <a class="nav-cta" href="{{ '/#contact' | relative_url }}">Hire Me</a>
+      </div>
+    </nav>
+  </div>
+
+  <div class="wrap">
+    {{ content }}
+
+    <footer class="site-footer">
+      <span>© {{ 'now' | date: '%Y' }} {{ profile.handle | default: site.title }} / {{ profile.company }} · GITHUB PAGES</span>
+      <div class="footer-links">
+        {% assign footermenu = site.data.menus.footer | sort: 'weight' %}
+        {% for item in footermenu %}
+          {% if item.url contains 'http' %}
+          <a href="{{ item.url }}" {% if item.url contains 'http' %}target="_blank" rel="noopener"{% endif %}>{{ item.name }}</a>
+          {% else %}
+          <a href="{{ item.url | relative_url }}">{{ item.name }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </footer>
+  </div>
+
+  <script src="{{ '/assets/js/portfolio.js' | relative_url }}"></script>
+  {% include google-analytics.html %}
+</body>
+</html>

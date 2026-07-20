@@ -1,0 +1,74 @@
+name: "Jo (Najoe)"
+handle: "NAJOE"
+tagline: "Remote since 2012 · SRE · DevOps · WordPress"
+headline: "Engineering"
+headline_accent: "the Future"
+portrait: "images/jo-portrait.png"
+
+hero_lead: >-
+  I'm **Jo (Najoe)** — Site Reliability Engineer, DevOps engineer, Security Researcher,
+  Fullstack Developer, and WordPress Specialist. Through **Najoe Solutions**, I help
+  Government, Businesses, creators, and teams ship reliable systems that last.
+
+about:
+  title: "Hi, I'm Jo — also known as Najoe."
+  paragraphs:
+    - >-
+      Full-time Site Reliability Engineer, DevOps engineer, security researcher, fullstack developer,
+      and WordPress specialist. I've worked remotely since 2012, shipping and operating systems that
+      stay up when it matters.
+    - >-
+      I'm the author of **Teratak Repo** — open Malaysian IT learning material — and I keep a DevOps diary
+      while exploring hybrid Kubernetes and OWASP tooling. Certified across Alibaba Cloud and AWS; happy
+      to dig into deployment stacks, WordPress, and production reliability anytime.
+    - >-
+      Fun fact: I love food. Serious fact: I care about clear systems, secure defaults, and knowledge
+      that communities can actually use.
+  chips:
+    - { label: "SRE", class: "" }
+    - { label: "DevOps", class: "blue" }
+    - { label: "Security research", class: "pink" }
+    - { label: "Fullstack", class: "" }
+    - { label: "WordPress specialist", class: "blue" }
+    - { label: "AWS · Alibaba certified", class: "pink" }
+  skills:
+    frontend: ["HTML5", "CSS3", "JavaScript", "TypeScript", "Bootstrap", "WordPress", "Webpack", "Electron"]
+    backend: ["Node.js", "Express", "Python", "Django", "PHP", "C++"]
+    devops: ["AWS", "GCP", "Azure", "Docker", "Kubernetes", "Ansible", "Nginx", "Linux", "Grafana", "Elastic", "Redis", "MySQL"]
+  focus:
+    - "Currently: DevOps diary, hybrid Kubernetes, OWASP tools"
+    - "Ask me: deployment stacks, WordPress, reliability"
+    - "Open knowledge: Teratak Repo (EN / MY / Najoe)"
+  stats:
+    - { value: "2012+", label: "Remote engineering" }
+    - { value: "SRE", label: "Uptime-first craft" }
+    - { value: "MY", label: "Clinics & creators" }
+    - { value: "OSS", label: "Teratak · learning" }
+
+company: "Najoe Solutions"
+registration: "202203246620 (PG0532835-A)"
+contact_email: "hello@najoesolutions.com"
+
+services:
+  - title: "SRE & DevOps engagement"
+    body: "Pipelines, cloud (AWS / GCP / Azure), containers, observability, and uptime-minded delivery."
+  - title: "WordPress & training"
+    body: "Sites, stacks, and WordPress Craft programs for creators, entrepreneurs, and developers."
+  - title: "Clinic digital ops"
+    body: "Admin and workflow improvements for GP and dental practices across Malaysia."
+
+links:
+  - { label: "GitHub", url: "https://github.com/harimau99" }
+  - { label: "@najoesolutions.os", url: "https://www.instagram.com/najoesolutions.os/" }
+  - { label: "@its.najoe", url: "https://instagram.com/its.najoe" }
+  - { label: "Facebook", url: "https://www.facebook.com/its.najoe" }
+  - { label: "Medium", url: "https://medium.com/@najoe.xl" }
+  - { label: "Buy me a coffee", url: "https://www.buymeacoffee.com/jojaafar" }
+
+interest_options:
+  - "SRE / DevOps engagement"
+  - "WordPress build or rescue"
+  - "WordPress Craft training"
+  - "Clinic digital ops (MY)"
+  - "Security / OWASP consultation"
+  - "Something else"

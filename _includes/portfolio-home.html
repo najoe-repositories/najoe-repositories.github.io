@@ -1,0 +1,217 @@
+{% assign profile = site.data.profile %}
+{% assign portfolio = site.data.portfolio %}
+
+<!-- HOME / HERO -->
+<header class="hero" id="home">
+  <div class="hero-portrait">
+    <div class="hero-portrait-glow" aria-hidden="true"></div>
+    <div class="hero-portrait-frame">
+      <img
+        src="{{ profile.portrait | relative_url }}"
+        alt="Portrait of {{ profile.name }}"
+        width="760"
+        height="1013"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+  </div>
+
+  <div class="hero-copy">
+    <div class="status-line">{{ profile.tagline }}</div>
+    <h1>
+      {{ profile.headline }}
+      <span class="accent">{{ profile.headline_accent }}</span>
+    </h1>
+    <p class="hero-lead">{{ profile.hero_lead | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#portfolio">View Portfolio</a>
+      <a class="btn btn-secondary" href="#contact">Hire Me</a>
+      <a class="btn btn-ghost" href="#about">About Najoe</a>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about" aria-labelledby="about-heading">
+  <div class="section-head">
+    <div>
+      <div class="section-label">// Identity</div>
+      <h2 id="about-heading">About</h2>
+      <p>Battle-tested engineering since 2012 — from production SRE to WordPress craft and open learning.</p>
+    </div>
+    <a class="link-all" href="https://github.com/harimau99/myprofile" target="_blank" rel="noopener">GitHub profile →</a>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-card">
+      <h3>{{ profile.about.title }}</h3>
+      {% for p in profile.about.paragraphs %}
+      <p>{{ p | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+      {% endfor %}
+      <div class="about-meta">
+        {% for chip in profile.about.chips %}
+        <span class="chip{% if chip.class != '' %} {{ chip.class }}{% endif %}">{{ chip.label }}</span>
+        {% endfor %}
+      </div>
+    </div>
+
+    <aside class="skill-panel">
+      <h3>Skill set</h3>
+      <div class="skill-group">
+        <h4>Frontend</h4>
+        <div class="skill-tags">
+          {% for s in profile.about.skills.frontend %}<span>{{ s }}</span>{% endfor %}
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Backend</h4>
+        <div class="skill-tags">
+          {% for s in profile.about.skills.backend %}<span>{{ s }}</span>{% endfor %}
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>DevOps &amp; platform</h4>
+        <div class="skill-tags">
+          {% for s in profile.about.skills.devops %}<span>{{ s }}</span>{% endfor %}
+        </div>
+      </div>
+      <ul class="focus-list">
+        {% for item in profile.about.focus %}
+        <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </aside>
+  </div>
+
+  <div class="stats">
+    {% for stat in profile.about.stats %}
+    <div class="stat"><strong>{{ stat.value }}</strong><span>{{ stat.label }}</span></div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" aria-labelledby="portfolio-heading">
+  <div class="section-head">
+    <div>
+      <div class="section-label">// Najoe Solutions · @najoesolutions.os</div>
+      <h2 id="portfolio-heading">Portfolio</h2>
+      <p>
+        Selected work from Najoe Solutions — WordPress craft training, smarter clinic operations in Malaysia,
+        and open materials that help people level up.
+      </p>
+    </div>
+    <a class="link-all" href="https://www.instagram.com/najoesolutions.os/" target="_blank" rel="noopener">Instagram →</a>
+  </div>
+
+  <div class="grid">
+    {% for item in portfolio.items %}
+    <article class="card">
+      <div class="card-icon">
+        {% include portfolio-icon.html name=item.icon %}
+      </div>
+      <div class="card-meta">
+        <span class="tag {{ item.tag_class }}">{{ item.tag }}</span>
+        <span>{{ item.meta }}</span>
+      </div>
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.description }}</p>
+      <div class="card-footer">
+        {% if item.link contains 'http' %}
+        <a class="card-link" href="{{ item.link }}" target="_blank" rel="noopener">{{ item.link_label }}</a>
+        {% else %}
+        <a class="card-link" href="{{ item.link | relative_url }}">{{ item.link_label }}</a>
+        {% endif %}
+        <span class="card-stats">{{ item.stats }}</span>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- CONTACT / HIRE ME -->
+<section id="contact" aria-labelledby="contact-heading">
+  <div class="section-head">
+    <div>
+      <div class="section-label">// Hire · Consult · Partner</div>
+      <h2 id="contact-heading">Contact</h2>
+      <p>Open for freelance engineering, consultation, training, and clinic digitalization projects.</p>
+    </div>
+  </div>
+
+  <div class="contact-layout">
+    <div class="contact-copy contact-card">
+      <h3>Let's build something reliable.</h3>
+      <p>
+        Whether you need production SRE/DevOps muscle, a WordPress platform done right, training for your team,
+        or admin systems that help a Malaysian clinic work smarter — start a conversation. {{ profile.company }}
+        ({{ profile.registration }}) is built for practical outcomes.
+      </p>
+
+      <ul class="service-list">
+        {% for svc in profile.services %}
+        <li>
+          <span class="num">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+          <div>
+            <strong>{{ svc.title }}</strong>
+            {{ svc.body }}
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+
+      <div class="contact-links">
+        {% for link in profile.links %}
+        <a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }}</a>
+        {% endfor %}
+      </div>
+
+      <p class="entity-line">
+        {{ profile.company }} · {{ profile.registration }}<br />
+        Freelance &amp; consultation · Remote since 2012
+      </p>
+    </div>
+
+    <div class="form-card">
+      <h3>Hire me / project intake</h3>
+      <p class="form-lead">
+        Fill in the details below — your message is packaged and sent with the full project brief
+        (name, email, interest, and notes).
+      </p>
+      <form id="contact-form" novalidate data-contact-email="{{ profile.contact_email | default: site.data.contact.email }}">
+        <div class="form-row">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required />
+          </div>
+        </div>
+        <div class="field">
+          <label for="interest">I'm interested in</label>
+          <select id="interest" name="interest" required>
+            {% for opt in profile.interest_options %}
+            <option value="{{ opt }}">{{ opt }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">Project brief</label>
+          <textarea id="message" name="message" placeholder="Goals, timeline, stack, constraints..." required></textarea>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit" id="contact-submit">Send details</button>
+        </div>
+        <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+        <p class="form-note" style="margin-top:14px">
+          Your mail app will open with a ready-to-send message containing all form fields.
+          Follow updates on
+          <a href="https://www.instagram.com/najoesolutions.os/" target="_blank" rel="noopener">@najoesolutions.os</a>.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
